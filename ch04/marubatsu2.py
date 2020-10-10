@@ -47,7 +47,9 @@ def play(p1, p2, turn):
   # 各場所に置いたときの評価値を調べる
   r = [minmax(p2, p1 | (1 << i), True) for i in w]
   # 評価値が一番高い場所を取得する
-  j = w[r.index(max(r))]
+  i = [i for i, x in enumerate(r) if x == max(r)]
+  # ランダムに1つ選ぶ
+  j = w[random.choice(i)]
   play(p2, p1 | (1 << j), not turn)
 
 play(0, 0, True)
